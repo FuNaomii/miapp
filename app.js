@@ -4,24 +4,25 @@ formulario.addEventListener("submit", (e)=>{
     e.preventDefault();
     const descripcion = document.querySelector("#descripcion").value;
     const contenedor = document.querySelector(".publicaciones");
-    contenedor.innerHTML +=`<div id"${contador}" class="publicacion">
-        <p>id:${contador}</p>
-        <p>${descripcion}</p>
-        <button id="editar" onclick="editar(this)">editar</button>
-        <button id="eliminar" onclick="eliminar(this)">eliminar</button>
+    contenedor.innerHTML +=`<div id="${contador}" class="publicacion">
+            <p>id:${contador}</p>
+            <p>${descripcion}</p>
+            <button id="editar" onclick="editar(this)">Editar</button>
+            <button id="eliminar" onclick="eliminar(this)">eliminar</button>
         </div>`;
     contador++;
 });
 
 function editar(e){
-    parrafo = e.parentElement.querySelector("p:nth-child(2)");
-    parrafo.contentEditable = true;
-    e.value = "Guardar";
-    if(parrafo.contentEditable){
-        parrafo.contentEditable = false;
+    const parrafo = e.parentElement.querySelector("p:nth-child(2)");
+    if (e.textContent == "Editar") {
+        parrafo.contentEditable = true;
+        e.textContent = "Guardar"
+        parrafo.focus();
     }
-    if(e.value == "Guardar"){
-        e.value = "Editar";
+    else {
+        e.textContent = "Editar"
+        parrafo.contentEditable = false;
     }
 }
 
